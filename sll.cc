@@ -122,23 +122,35 @@ void swap_nodes(int a, int b) {
     prev2 =temp2;
     temp2 = temp2->next;
   }
-  temp2->next = prev1->next->next;
-  prev1->next = temp2;
-  temp1->next = prev2->next->next;
-  prev2->next = temp1;
+  if(prev1 != nullptr)
+    prev1->next = temp2;
+  else
+    head = tail = prev1;
+  if(prev2 != nullptr)
+    prev2->next = temp1;
+  else
+    head = tail = prev2;
+  Node *temp = temp2->next;
+  temp2->next = temp1->next;
+  temp1->next  = temp;
+  temp = head;
+//  while(temp != nullptr) {
+//    temp = temp->next;
+//  }
+//  tail = temp;
 }
 };
 
 int main() {
   SLL *obj = new SLL;
-  obj->insertNode(10);
+  obj->insertNode(60);
   obj->printList();
   obj->insertFront(20);
   obj->printList();
   obj->insertNode(30);
   obj->printList();
-  obj->insertNode(40);
-  obj->insertFront(10);
+  obj->insertNode(10);
+  obj->insertFront(40);
   obj->printList();
   obj->insertNode(50);
   obj->printList();
@@ -150,9 +162,11 @@ int main() {
   obj->printList();
   obj->delete_node_pos(2);
   obj->printList();
-*/  cout << obj->search_element(200) << endl;
+  cout << obj->search_element(200) << endl;*/
   obj->printList();
-  obj->swap(10, 200);
+  obj->swap_nodes(10, 200);
+  obj->printList();
+  obj->swap_nodes(20, 10);
   obj->printList();
   return 0;
 }
