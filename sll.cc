@@ -100,6 +100,33 @@ class SLL : public Node {
     if(pos == count)
       tail = prev;
   }
+
+  bool search_element(int data) {
+  Node *temp = head;
+  while(temp) {
+  if(temp->data == data)
+    return true;
+  else
+    temp = temp->next;
+  }
+  return false;
+}
+
+void swap_nodes(int a, int b) {
+  Node *temp1 = head, *temp2 = head, *prev1, *prev2;
+  while(temp1 != nullptr && temp1->data != a) {
+    prev1 =temp1;
+    temp1 = temp1->next;
+  }
+  while(temp2 != nullptr && temp2->data != b) {
+    prev2 =temp2;
+    temp2 = temp2->next;
+  }
+  temp2->next = prev1->next->next;
+  prev1->next = temp2;
+  temp1->next = prev2->next->next;
+  prev2->next = temp1;
+}
 };
 
 int main() {
@@ -117,11 +144,15 @@ int main() {
   obj->printList();
   obj->insertAtPos(5,200);
   obj->printList();
-  obj->delete_node(40);
+/*  obj->delete_node(40);
   obj->printList();
   obj->delete_node_pos(6);
   obj->printList();
   obj->delete_node_pos(2);
+  obj->printList();
+*/  cout << obj->search_element(200) << endl;
+  obj->printList();
+  obj->swap(10, 200);
   obj->printList();
   return 0;
 }
