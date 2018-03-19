@@ -52,6 +52,27 @@ class linkedList {
             head = temp;
         }
     }
+
+    void insert(int data, int pos) {
+//        Node *temp = createNode(data);
+        int count = 1;
+        Node *p = head;
+        while(p != tail) {
+            count++;
+            p = p->next;
+        }
+        if(pos == count) {
+            insertEnd(data);
+        } else {
+            p = head;int i;
+            for(i = 1; i <= count; i++) 
+                p = p->next;
+            Node *temp = createNode(data);
+            temp->next = p->next;
+            p->next = temp;
+        cout << temp->data << " is inserted at " << i+1 << "position\n";
+        }
+    }
 };
 
 
